@@ -1,0 +1,20 @@
+import java.util.Scanner;
+
+public class lab6 {
+    public static void main(String[] args)
+    {
+        Scanner sc=new Scanner(System.in);
+        char z;
+        System.out.println("enter the any character");
+        z=sc.next().charAt(0);
+        if(z=='a'||z=='e'||z=='i'||z=='o'||z=='u'||z=='A'||z=='E'||z=='I'||z=='O'||z=='U')
+        {
+            System.out.println("a letter is vowel");
+        }
+        else
+        {
+            System.out.println("a letter is constant");
+        }
+
+    }
+}
