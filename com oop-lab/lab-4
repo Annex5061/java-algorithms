@@ -1,0 +1,14 @@
+import java.util.Scanner;
+
+public class lab4 {
+    public static void main(String[]args)
+    {
+        Scanner sc=new Scanner(System.in);
+        System.out.println("enter the height value");
+        double h=sc.nextDouble();
+        System.out.println("enter the weight value");
+        double w=sc.nextDouble();
+        double ans=(h*0.45359237)/(w*0.0254)*(w*0.0254);
+        System.out.println("the BMI value is "+ans);
+    }
+}
