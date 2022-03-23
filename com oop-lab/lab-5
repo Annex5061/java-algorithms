@@ -1,0 +1,41 @@
+import java.util.Scanner;
+
+public class lab5 {
+    public static void main(String[] args)
+    {
+        Scanner sc=new Scanner(System.in);
+        int a,b,c;
+        System.out.println("enter the first number");
+        a=sc.nextInt();
+        System.out.println("enter the second number");
+        b=sc.nextInt();
+        System.out.println("enter the third number");
+        c=sc.nextInt();
+        int temp;
+        if(a<b)
+        {
+            temp=a;
+            a=b;
+            b=temp;
+        }
+        if(c>b)
+        {
+            if(c>a)
+            {
+                temp=c;
+                c=a;
+                a=temp;
+            }
+            else
+            {
+                temp=c;
+                c=b;
+                b=temp;
+            }
+        }
+
+
+        System.out.println("now the value of c,b and c "+a+" "+b+" "+c);
+
+    }
+}
