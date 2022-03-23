@@ -1,0 +1,14 @@
+import java.util.Scanner;
+public class lab3 {
+
+    public static void main(String[] args)
+    {
+        Scanner sc=new Scanner(System.in);
+        double m;
+        System.out.println("enter the value meters");
+        m=sc.nextDouble();
+        double f=m*3.28084;
+
+        System.out.println("the feet value of the "+m+" meters is "+f);
+    }
+}
