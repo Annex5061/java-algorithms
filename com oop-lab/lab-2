@@ -1,0 +1,26 @@
+import java.util.Scanner;
+
+public class lab2 {
+
+    public static void main(String[] args)
+    {
+         Scanner sc=new Scanner(System.in);
+         System.out.println("enter the value of the a");
+         double a=sc.nextDouble();
+        System.out.println("enter the value of the b");
+        double b=sc.nextDouble();
+        System.out.println("enter the value of the e");
+        double e=sc.nextDouble();
+        System.out.println("enter the value of c");
+        double c=sc.nextDouble();
+        System.out.println("enter the value of d");
+        double d=sc.nextDouble();
+        System.out.println("enter the value of f");
+        double f=sc.nextDouble();
+
+        double x=(e*d)-(b*f)/(a*d)-(b*c);
+        double y=(a*f)-(e*c)/(a*d)-(b*c);
+        System.out.println("the value of the x is "+x);
+        System.out.println("the value of the x is "+y);
+    }
+}
