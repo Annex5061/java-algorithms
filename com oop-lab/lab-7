@@ -1,0 +1,16 @@
+import java.util.Random;
+
+public class lab7 {
+    public static void main(String[] args)
+    {
+        Random rad=new Random();
+        char a=(char)('A'+rad.nextInt(26));
+        char b=(char)('A'+rad.nextInt(26));
+
+        int x=rad.nextInt(9);
+        int y=rad.nextInt(9);
+        int z=rad.nextInt(9);
+        int q=rad.nextInt(9);
+        System.out.println(a+""+b+""+x+y+z+q);
+    }
+}
