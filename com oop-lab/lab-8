@@ -1,0 +1,23 @@
+import java.util.Scanner;
+
+public class lab8 {
+    public static void main(String[] args)
+    {
+        System.out.println("enter the any number");
+        Scanner sc=new Scanner(System.in);
+        int d=2;
+        int a=sc.nextInt();
+        while(a>1)
+        {
+            if(a%d==0)
+            {
+                System.out.print(d+" ");
+                a=a/d;
+            }
+            else
+            {
+                d++;
+            }
+        }
+    }
+}
