@@ -1,3 +1,4 @@
+
  class person
 {
     public person()
@@ -9,16 +10,15 @@
 
 
 
+     public employee(String c)
+     {
+         System.out.println(c);
+     }
      public employee()
      {
-         super();
-         System.out.println("2.send task");
+         this("2.uses overloded construction of employee");
          System.out.println("3. perform duties for employee");
      }
-    /* public employee(String c)
-     {
-       System.out.println(c);
- }*/
 
 }
 class faculty extends employee
@@ -26,7 +26,7 @@ class faculty extends employee
     public faculty()
     {
         super();
-        System.out.println("4.task for the faculty");
+        System.out.println("4.performs the task for the faculty");
     }
 }
 
