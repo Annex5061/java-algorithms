@@ -1,0 +1,221 @@
+package com.example.java_fx;
+
+import javafx.application.Application;
+import javafx.geometry.HPos;
+import javafx.scene.control.*;
+import javafx.scene.layout.HBox;
+import javafx.scene.layout.StackPane;
+import javafx.scene.layout.VBox;
+import javafx.scene.shape.Line;
+import javafx.stage.Stage;
+import javafx.application.Application;
+import javafx.geometry.Insets;
+import javafx.geometry.Pos;
+import javafx.scene.Scene;
+import javafx.scene.layout.GridPane;
+import javafx.scene.text.Font;
+import javafx.scene.text.FontPosture;
+import javafx.scene.text.FontWeight;
+import javafx.stage.Stage;
+import javafx.geometry.Pos;
+
+import java.time.LocalDate;
+
+public class
+assignment2 extends Application {
+
+    public static void main(String[] args) {
+        launch(args);
+    }
+
+    @Override
+    public void start(Stage primaryStage) {
+
+       Stage window=new Stage();
+       window.setTitle("Registration form");
+
+       GridPane pane=new GridPane();
+       pane.setAlignment(Pos.CENTER);
+       pane.setPadding(new Insets(20,20,20,20));
+       pane.setHgap(15);
+       pane.setVgap(15);
+
+
+       Label title=new Label("Registration form");
+       title.setFont(Font.font("Arial",FontWeight.BOLD,24));
+       pane.add(title,0,0,2,1);
+        GridPane.setHalignment(title, HPos.CENTER);
+        GridPane.setMargin(title,new Insets(20,0,20,0));
+
+        Label name= new Label("1. Name");
+        name.setFont(Font.font("Arial",FontWeight.EXTRA_LIGHT,20));
+        pane.add(name,0,1);
+
+        Line line=new Line();
+
+        Label fname=new Label(" FirstName :");
+        pane.add(fname,0,2);
+
+        TextField ftext=new TextField();
+        pane.add(ftext,1,2);
+
+        Label mname=new Label(" MiddleName :");
+        pane.add(mname,0,3);
+
+        TextField mtext=new TextField();
+        pane.add(mtext,1,3);
+
+        Label lname=new Label("LastName :");
+        pane.add(lname,0,4);
+
+        TextField ltext=new TextField();
+        pane.add(ltext,1,4);
+
+        Label email=new Label("2. Email");
+        email.setFont(Font.font("Arial",FontWeight.EXTRA_LIGHT,20));
+        pane.add(email,0,5);
+
+        Label mail=new Label("Email :");
+        pane.add(mail,0,6);
+
+        TextField mailtext=new TextField();
+        pane.add(mailtext,1,6);
+
+        Label Num=new Label("3. Number");
+        Num.setFont(Font.font("Arial",FontWeight.EXTRA_LIGHT,20));
+        pane.add(Num,0,7);
+
+        Label num=new Label("Mobile Number :");
+        pane.add(num,0,8);
+
+        TextField numtext=new TextField();
+        pane.add(numtext,1,8);
+
+        Label date=new Label("4. BirthDate");
+        date.setFont(Font.font("Arial",FontWeight.EXTRA_LIGHT,20));
+        pane.add(date,4,1);
+
+        Label dat=new Label("Birth Date :");
+        pane.add(dat,4,2);
+
+        DatePicker datePicker=new DatePicker();
+        pane.add(datePicker,5,2);
+        datePicker.setValue(LocalDate.now());
+
+        Label Gender=new Label("5. Gender");
+        Gender.setFont(Font.font("Arial",FontWeight.EXTRA_LIGHT,20));
+        pane.add(Gender,4,3);
+
+        ToggleGroup toggleGroup=new ToggleGroup();
+
+        RadioButton but1=new RadioButton("Male");
+        but1.setToggleGroup(toggleGroup);
+        but1.setSelected(true);
+        pane.add(but1,4,4);
+
+        RadioButton but2=new RadioButton("Female");
+        but2.setToggleGroup(toggleGroup);
+        pane.add(but2,5,4);
+
+        Label Lang=new Label("6. Language");
+        Lang.setFont(Font.font("Arial",FontWeight.EXTRA_LIGHT,20));
+        pane.add(Lang,4,5);
+
+        ToggleGroup toggleGroup1=new ToggleGroup();
+
+        RadioButton but3=new RadioButton("Hindi");
+        but3.setToggleGroup(toggleGroup1);
+        but3.setSelected(true);
+        pane.add(but3,4,6);
+
+        RadioButton but4=new RadioButton("Gujrati");
+        but4.setToggleGroup(toggleGroup1);
+        pane.add(but4,5,6);
+
+        RadioButton but5=new RadioButton("English");
+        but5.setToggleGroup(toggleGroup1);
+        pane.add(but5,4,7);
+
+        Button clear=new Button("Clear");
+        pane.add(clear,4,8);
+
+        clear.setOnAction(e->{
+            mtext.setText("");
+        ftext.setText("");
+        ltext.setText("");
+        mailtext.setText("");
+        numtext.setText("");
+
+        });
+
+
+        VBox hBox=new VBox();
+        Label htitle=new Label("Welcome to our Community");
+        htitle.setFont(Font.font("Arila",FontWeight.BOLD,30));
+        hBox.getChildren().add(htitle);
+        hBox.setAlignment(Pos.CENTER);
+
+
+
+        Scene scene1=new Scene(hBox,500,300);
+
+
+        Button submit=new Button("Submit");
+        pane.add(submit,5,8);
+
+        submit.setOnAction(e->
+        {
+            if(mtext.getText().isEmpty())
+            {
+                alert.alert_b("error","plases enter Middle_name");
+            }
+
+            if(ftext.getText().isEmpty())
+            {
+                alert.alert_b("error","plases enter First_name");
+            }
+
+            if(ltext.getText().isEmpty())
+            {
+                alert.alert_b("error","plases enter Last_name");
+            }
+
+            if(mailtext.getText().isEmpty())
+            {
+                alert.alert_b("error","plases enter your Email address");
+            }
+
+            if(!mailtext.getText().matches("(6\\\\.0)|([1-5]\\\\.[0-9])"))
+            {
+                alert.alert_b("invalid","please enter the valild email address");
+            }
+
+            if(numtext.getText().isEmpty())
+            {
+                alert.alert_b("error","plases enter Mobile_Number");
+
+            }
+
+            if(numtext.getLength()<10)
+            {
+                alert.alert_b("invalid","please enter the 10 digit of the number");
+            }
+            window.setScene(scene1);
+        });
+
+        Button close=new Button("close");
+        pane.add(close,6,8);
+        close.setOnAction(e->window.close());
+
+
+        Scene scene =new Scene(pane,800,500);
+       window.setScene(scene);
+       window.show();
+
+        Button priv=new Button("privious");
+        hBox.getChildren().add(priv);
+        hBox.setPadding(new Insets(10,30,10,10));
+        priv.setOnAction(e->window.setScene(scene));
+
+    }
+}
