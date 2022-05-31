@@ -18,6 +18,7 @@ import javafx.scene.text.FontPosture;
 import javafx.scene.text.FontWeight;
 import javafx.stage.Stage;
 import javafx.geometry.Pos;
+import java.util.regex.*;
 
 import java.time.LocalDate;
 
@@ -31,187 +32,298 @@ assignment2 extends Application {
     @Override
     public void start(Stage primaryStage) {
 
+        //first window
        Stage window=new Stage();
        window.setTitle("Registration form");
 
+      //first pane
        GridPane pane=new GridPane();
+       pane.setStyle("-fx-background-color:#0a1c2b;-fx-border-color:white;-fx-border-width:5;");
        pane.setAlignment(Pos.CENTER);
        pane.setPadding(new Insets(20,20,20,20));
        pane.setHgap(15);
        pane.setVgap(15);
 
+       //start
 
        Label title=new Label("Registration form");
-       title.setFont(Font.font("Arial",FontWeight.BOLD,24));
+        title.setStyle("-fx-text-fill:white");
+       title.setFont(Font.font("Arial",FontWeight.BOLD,30));
        pane.add(title,0,0,2,1);
         GridPane.setHalignment(title, HPos.CENTER);
         GridPane.setMargin(title,new Insets(20,0,20,0));
 
+        //name of employee
+
         Label name= new Label("1. Name");
+        name.setStyle("-fx-text-fill:white");
         name.setFont(Font.font("Arial",FontWeight.EXTRA_LIGHT,20));
         pane.add(name,0,1);
 
-        Line line=new Line();
-
+        //first name
         Label fname=new Label(" FirstName :");
         pane.add(fname,0,2);
-
+        fname.setStyle("-fx-text-fill:white");
         TextField ftext=new TextField();
         pane.add(ftext,1,2);
+        ftext.setStyle("-fx-background-color:#102b40;-fx-background-radius:10;-fx-border-width:1;-fx-border-color:white;-fx-text-fill:white");
 
+       //middlename
         Label mname=new Label(" MiddleName :");
         pane.add(mname,0,3);
-
+        mname.setStyle("-fx-text-fill:white");
         TextField mtext=new TextField();
         pane.add(mtext,1,3);
+        mtext.setStyle("-fx-background-color:#102b40;-fx-background-radius:10;-fx-border-width:1;-fx-border-color:white;-fx-text-fill:white");
 
+       //lastname
         Label lname=new Label("LastName :");
         pane.add(lname,0,4);
-
+        lname.setStyle("-fx-text-fill:white");
         TextField ltext=new TextField();
         pane.add(ltext,1,4);
+        ltext.setStyle("-fx-background-color:#102b40;-fx-background-radius:10;-fx-border-width:1;-fx-border-color:white;-fx-text-fill:white");
 
+        //email
         Label email=new Label("2. Email");
         email.setFont(Font.font("Arial",FontWeight.EXTRA_LIGHT,20));
         pane.add(email,0,5);
-
+        email.setStyle("-fx-text-fill:white");
         Label mail=new Label("Email :");
         pane.add(mail,0,6);
-
+        mail.setStyle("-fx-text-fill:white");
         TextField mailtext=new TextField();
+        mailtext.setStyle("-fx-background-color:#102b40;-fx-background-radius:10;-fx-border-width:1;-fx-border-color:white;-fx-text-fill:white");
         pane.add(mailtext,1,6);
 
+        //number
         Label Num=new Label("3. Number");
         Num.setFont(Font.font("Arial",FontWeight.EXTRA_LIGHT,20));
         pane.add(Num,0,7);
-
+        Num.setStyle("-fx-text-fill:white");
         Label num=new Label("Mobile Number :");
         pane.add(num,0,8);
-
+        num.setStyle("-fx-text-fill:white");
         TextField numtext=new TextField();
         pane.add(numtext,1,8);
+        numtext.setStyle("-fx-background-color:#102b40;-fx-background-radius:10;-fx-border-width:1;-fx-border-color:white;-fx-text-fill:white");
 
-        Label date=new Label("4. BirthDate");
+        //birthdate
+        Label date=new Label("4. Birth Date");
         date.setFont(Font.font("Arial",FontWeight.EXTRA_LIGHT,20));
         pane.add(date,4,1);
+        date.setStyle("-fx-text-fill:white");
 
-        Label dat=new Label("Birth Date :");
-        pane.add(dat,4,2);
+//in combox
+        HBox vb=new HBox();
+        vb.setAlignment(Pos.CENTER);
+        vb.setSpacing(25);
+        pane.add(vb,4,2);
+        //date
+        ComboBox<Integer> det=new ComboBox<>();
+        det.getItems().addAll(1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,310);
+        det.setStyle("fx-border:blue");
+        det.setPromptText("Date");
+        vb.getChildren().add(det);
+        det.setStyle("-fx-background-radius:10");
+       //month
+        ComboBox<String> month=new ComboBox<>();
+        month.getItems().addAll("January","February","March","April","May","June","July","August","September","October","November","December");
+        month.setStyle("fx-border:blue");
+        month.setPromptText("Month");
+        month.setStyle("-fx-background-radius:10");
+        vb.getChildren().add(month);
+       //year
+        ComboBox<Integer>year=new ComboBox<>();
+        year.getItems().addAll(1995,1996,1997,1998,1999,2000,2001,2002,2003,2004,2005,2006,2007,2008,2009,2010,2011,2012,2013);
+        year.setStyle("fx-border:blue");
+        year.setPromptText("Year");
+        vb.getChildren().add(year);
+        year.setStyle("-fx-background-radius:10");
 
-        DatePicker datePicker=new DatePicker();
-        pane.add(datePicker,5,2);
-        datePicker.setValue(LocalDate.now());
-
+       //gender
         Label Gender=new Label("5. Gender");
         Gender.setFont(Font.font("Arial",FontWeight.EXTRA_LIGHT,20));
         pane.add(Gender,4,3);
+        Gender.setStyle("-fx-text-fill:white");
+      //Hbox for the gender
+        HBox gen=new HBox();
+        pane.add(gen,4,4);
+        gen.setSpacing(15);
 
         ToggleGroup toggleGroup=new ToggleGroup();
-
+        //male
         RadioButton but1=new RadioButton("Male");
         but1.setToggleGroup(toggleGroup);
         but1.setSelected(true);
-        pane.add(but1,4,4);
-
+        gen.getChildren().add(but1);
+        but1.setStyle("-fx-text-fill:white");
+        //female
         RadioButton but2=new RadioButton("Female");
         but2.setToggleGroup(toggleGroup);
-        pane.add(but2,5,4);
+        gen.getChildren().add(but2);
+        but2.setStyle("-fx-text-fill:white");
 
+        //language
         Label Lang=new Label("6. Language");
         Lang.setFont(Font.font("Arial",FontWeight.EXTRA_LIGHT,20));
         pane.add(Lang,4,5);
-
+       Lang.setStyle("-fx-text-fill:white");
         ToggleGroup toggleGroup1=new ToggleGroup();
 
-        RadioButton but3=new RadioButton("Hindi");
-        but3.setToggleGroup(toggleGroup1);
+        //hbox for language
+        HBox lan=new HBox();
+        pane.add(lan,4,6);
+       lan.setSpacing(15);
+//hindi
+        CheckBox but3=new CheckBox("Hindi");
         but3.setSelected(true);
-        pane.add(but3,4,6);
+        lan.getChildren().add(but3);
+        but3.setStyle("-fx-text-fill:white");
 
-        RadioButton but4=new RadioButton("Gujrati");
-        but4.setToggleGroup(toggleGroup1);
-        pane.add(but4,5,6);
+        //gujrati
+        CheckBox but4=new CheckBox("Gujrati");
+        lan.getChildren().add(but4);
+        but4.setStyle("-fx-text-fill:white");
 
-        RadioButton but5=new RadioButton("English");
-        but5.setToggleGroup(toggleGroup1);
-        pane.add(but5,4,7);
+        //english
+        CheckBox but5=new CheckBox("English");
+        lan.getChildren().add(but5);
+        but5.setStyle("-fx-text-fill:white");
 
+        //hbox for the windows
+
+        HBox butt=new HBox();
+        pane.add(butt,4,8);
+        butt.setSpacing(25);
+
+         //clear
         Button clear=new Button("Clear");
-        pane.add(clear,4,8);
+        butt.getChildren().add(clear);
 
+        //submit
+        Button submit=new Button("Submit");
+        butt.getChildren().add(submit);
+
+        //clear Actions
         clear.setOnAction(e->{
+            but3.setSelected(false);
+            but4.setSelected(false);
+            but5.setSelected(false);
+            but1.setSelected(false);
+            but2.setSelected(false);
+            year.setValue(2000);
+            det.setValue(1);
+            month.setValue("January");
             mtext.setText("");
         ftext.setText("");
         ltext.setText("");
         mailtext.setText("");
         numtext.setText("");
-
         });
 
-
+        //new scene for welcome
         VBox hBox=new VBox();
+        hBox.setSpacing(20);
         Label htitle=new Label("Welcome to our Community");
+        htitle.setStyle("-fx-text-fill:white");
         htitle.setFont(Font.font("Arila",FontWeight.BOLD,30));
+        hBox.setStyle("-fx-background-color:#0a1c2b;-fx-border-color:white;-fx-border-width:5;");
         hBox.getChildren().add(htitle);
         hBox.setAlignment(Pos.CENTER);
-
-
-
         Scene scene1=new Scene(hBox,500,300);
 
-
-        Button submit=new Button("Submit");
-        pane.add(submit,5,8);
-
+        //submit actions
         submit.setOnAction(e->
         {
-            if(mtext.getText().isEmpty())
+           boolean a=mtext.getText().isEmpty();
+
+            if(a)
             {
                 alert.alert_b("error","plases enter Middle_name");
             }
+            boolean b=ftext.getText().isEmpty();
 
-            if(ftext.getText().isEmpty())
+            if(b)
             {
                 alert.alert_b("error","plases enter First_name");
             }
-
-            if(ltext.getText().isEmpty())
+            boolean c=ltext.getText().isEmpty();
+            if(c)
             {
                 alert.alert_b("error","plases enter Last_name");
             }
-
-            if(mailtext.getText().isEmpty())
+            boolean d=mailtext.getText().isEmpty();
+            if(d)
             {
                 alert.alert_b("error","plases enter your Email address");
             }
 
-            if(!mailtext.getText().matches("(6\\\\.0)|([1-5]\\\\.[0-9])"))
-            {
-                alert.alert_b("invalid","please enter the valild email address");
+
+            String regex="[a-zA-Z0-9_+&*-]+(?:\\."+"[a-zA-Z0-9_+&*-]+)*@"+"(?:[a-zA-Z0-9-]+\\.)+[a-zA-Z]{2,7}$";
+
+            Pattern pattern=Pattern.compile(regex);
+
+            boolean mailchck=pattern.matcher(mailtext.getText()).matches();
+
+            if(!(mailchck)) {
+
+                alert.alert_b("invalid", "please enter the valild email address");
             }
 
-            if(numtext.getText().isEmpty())
+
+            String rege="[6-9][0-9]{9}";
+            Pattern patter=Pattern.compile(rege);
+            Boolean mob=patter.matcher(numtext.getText()).matches();
+            boolean f=numtext.getText().isEmpty();
+            if(f)
             {
                 alert.alert_b("error","plases enter Mobile_Number");
 
             }
 
-            if(numtext.getLength()<10)
+            if(!mob)
             {
                 alert.alert_b("invalid","please enter the 10 digit of the number");
             }
-            window.setScene(scene1);
+
+            boolean g=det.getSelectionModel().isEmpty();
+
+            if(g)
+            {
+                alert.alert_b("error","enter the date");
+            }
+
+            boolean h=month.getSelectionModel().isEmpty();
+
+            if(h)
+            {
+                alert.alert_b("error","enter the month");
+            }
+
+            boolean i=year.getSelectionModel().isEmpty();
+
+            if(i)
+            {
+                alert.alert_b("error","enter the year");
+            }
+
+            if((!a)&&(!b)&&(!c)&&(!d)&&(mailchck)&&(!f)&&(mob)&&(!g)&&(!h)&&(!i)) {
+                window.setScene(scene1);
+            }
         });
 
+        //close button
         Button close=new Button("close");
-        pane.add(close,6,8);
+        butt.getChildren().add(close);
         close.setOnAction(e->window.close());
 
-
+        //window secne set
         Scene scene =new Scene(pane,800,500);
-       window.setScene(scene);
-       window.show();
+         window.setScene(scene);
+        window.show();
 
+        //privious button
         Button priv=new Button("privious");
         hBox.getChildren().add(priv);
         hBox.setPadding(new Insets(10,30,10,10));
