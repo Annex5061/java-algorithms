@@ -152,10 +152,10 @@ assignment2 extends Application {
         gen.setSpacing(15);
 
         ToggleGroup toggleGroup=new ToggleGroup();
+
         //male
         RadioButton but1=new RadioButton("Male");
         but1.setToggleGroup(toggleGroup);
-        but1.setSelected(true);
         gen.getChildren().add(but1);
         but1.setStyle("-fx-text-fill:white");
         //female
@@ -177,7 +177,7 @@ assignment2 extends Application {
        lan.setSpacing(15);
 //hindi
         CheckBox but3=new CheckBox("Hindi");
-        but3.setSelected(true);
+
         lan.getChildren().add(but3);
         but3.setStyle("-fx-text-fill:white");
 
@@ -308,7 +308,31 @@ assignment2 extends Application {
                 alert.alert_b("error","enter the year");
             }
 
-            if((!a)&&(!b)&&(!c)&&(!d)&&(mailchck)&&(!f)&&(mob)&&(!g)&&(!h)&&(!i)) {
+            boolean j=but1.isSelected();
+            boolean L=but2.isSelected();
+            boolean k=j|L;
+
+
+            if((!j)&&(!L))
+            {
+
+             alert.alert_b("error","enter the the gender portion");
+
+            } boolean m=but3.isSelected();
+            boolean n=but4.isSelected();
+            boolean o=but5.isSelected();
+            boolean p=m|n|o;
+
+
+
+            if((!m)&&(!n)&&(!o))
+            {
+
+             alert.alert_b("error","enter the the language");
+
+            }
+
+            if((!a)&&(!b)&&(!c)&&(!d)&&(mailchck)&&(!f)&&(mob)&&(!g)&&(!h)&&(!i)&&(k)&&(p)) {
                 window.setScene(scene1);
             }
         });
