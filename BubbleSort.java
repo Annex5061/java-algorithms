@@ -1,4 +1,5 @@
 public class BubbleSortExample {  
+    //worst case of this code is O(n2).
     static void bubbleSort(int[] arr) {  
         int n = arr.length;  
         int temp = 0;  
@@ -17,6 +18,7 @@ public class BubbleSortExample {
   
     } 
     // An optimized version of Bubble Sort
+    //worst case of this code is O(n).
     static void optimizedbubbleSort(int arr[], int n)
     {
         int i, j, temp;
