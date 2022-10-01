@@ -1,0 +1,165 @@
+import java.util.*;
+
+class Tree{
+  static node create(){
+    Scanner sc=new Scanner(System.in);
+    node root=null;
+    System.out.println("Enter the data ");
+    int data=sc.nextInt();
+    if(data==-1){
+      return null;
+    }
+    root=new node(data);
+    System.out.println("enter data to left of root "+root.data);
+    root.left=create();
+    System.out.println("enter data to right of root "+root.data);
+    root.right=create();
+    return root;
+  }
+  public static int height(node root){
+    if(root==null){
+      return 0;
+    }
+    return Math.max(height(root.left),height(root.right))+1;
+  }
+  public static class node{
+    node left,right;
+    int data;
+    node(int data){
+      this.data=data;
+      left=null;
+      right=null;
+    }
+  }
+  //preorder traversal in tree data structure
+  public static void preoder(node root){
+    if(root==null){
+      return;
+    }
+    System.out.print(root.data+" ");
+    preoder(root.left);
+    preoder(root.right);
+  }
+  //finding maximum in tree
+  public static int maximum(node root){
+    if(root==null)
+      return Integer.MIN_VALUE;
+    return Math.max(root.data,Math.max(maximum(root.left),maximum(root.right)));
+  }
+  //finding minimum in tree
+  public static int minimum(node root){
+    if(root==null)
+      return Integer.MAX_VALUE;
+   return Math.min(root.data,Math.min(minimum(root.left),minimum(root.right)));
+  }
+  //postorder traversal in tree
+  public static void postorder(node root){
+    if(root==null){
+      return;
+    }
+    postorder(root.left);
+    postorder(root.right);
+    System.out.print(root.data+" ");
+  }
+  //inoreder traveral in tree
+  public static void inorder(node root){
+    if(root==null){
+      return;
+    }
+    inorder(root.left);
+    System.out.print(root.data+" ");
+    inorder(root.right);
+  }
+  //level order traversal in tree
+  public static void levelorder(node root){
+    Queue<node> q=new LinkedList<>();
+    q.add(root);
+    while(!q.isEmpty()){
+      node cur=q.poll();
+      System.out.print(cur.data+" ");
+      if(cur.left!=null){
+        q.add(cur.left);
+      }
+      if(cur.right!=null){
+        q.add(cur.right);
+      }
+    }
+  }
+  //int size of tree
+  public static int size(node root) {
+    if(root == null)
+      return 0;
+    return size(root.left)+size(root.right)+1;
+  }
+  public static void printleftview(node root){
+    ArrayList<node> list=new ArrayList<>();
+    printviewleft(root, list, 0);
+    for(node cur: list){
+      System.out.print(cur.data+" ");
+    }
+  }
+  public static void printviewleft(node root,ArrayList list,int level){
+    if(root==null){
+      return;
+    }
+    if(list.get(level)==null){
+      list.set(level,root);
+    }
+    printviewleft(root.left, list, level+1);
+    printviewleft(root.right, list, level+1);
+  }
+  
+  public static void levelordernextlevel(node root){
+     Queue<node> q1=new LinkedList<>();
+     q1.add(root);
+     q1.add(null);
+    while(!q1.isEmpty()){
+      node cur=q1.poll();
+      if(cur==null){
+        if(q1.isEmpty()){
+          return;
+        }
+       q1.add(null);
+       System.out.println();
+       continue;
+      }
+      System.out.print(cur.data+" ");
+      
+      if(cur.left!=null){
+        q1.add(cur.left);
+      }
+      if(cur.right!=null){
+        q1.add(cur.right);
+      }
+    }
+  }
+  
+  
+  public static void main(String [] args){
+    node root=create();
+    System.out.print("preorder:-");
+    preoder(root);
+     System.out.println();
+    System.out.print("inorder:-");
+    inorder(root);
+     System.out.println();
+    System.out.print("postorder:-");
+    postorder(root);
+     System.out.println();
+    System.out.print("levelorder:-");
+    levelorder(root);
+     System.out.println();
+    System.out.print("levelorder next line:-");
+    levelordernextlevel(root);
+    System.out.println();
+    System.out.print("height of tree is "+ height(root));
+    System.out.println();
+    System.out.print("size of tree is "+ size(root));
+    System.out.println();
+    System.out.print("maximum of tree is "+ maximum(root));
+    System.out.println();
+    System.out.print("minimum of tree is "+ minimum(root));
+    System.out.println();
+    printleftview(root);
+  }
+}
