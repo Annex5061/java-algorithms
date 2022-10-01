@@ -1,34 +1,35 @@
-package Sorting;
-
-public class bubblesort {
-
-    public static void main(String args[])
-    {
-        int a[]={3,4,5,2,1,87,45};
-
-
-       for(int i=1;i<a.length;i++)
-       {
-           int key=a[i];
-
-           int hole=i-1;
-
-
-           while (hole>=0  && a[hole]>key)
-           {
-               a[hole+1]=a[hole];
-               hole=hole-1;
-
-               a[hole+1]=key;
-           }
-
-       }
-
-       for(int i=0;i<a.length;i++)
-       {
-           System.out.println((a[i]));
-       }
-
-
-    }
-}
+public class BubbleSortExample {  
+    static void bubbleSort(int[] arr) {  
+        int n = arr.length;  
+        int temp = 0;  
+         for(int i=0; i < n; i++){  
+                 for(int j=1; j < (n-i); j++){  
+                          if(arr[j-1] > arr[j]){  
+                                 //swap elements  
+                                 temp = arr[j-1];  
+                                 arr[j-1] = arr[j];  
+                                 arr[j] = temp;  
+                         }  
+                          
+                 }  
+         }  
+  
+    }  
+    public static void main(String[] args) {  
+                int arr[] ={3,60,35,2,45,320,5};  
+                 
+                System.out.println("Array Before Bubble Sort");  
+                for(int i=0; i < arr.length; i++){  
+                        System.out.print(arr[i] + " ");  
+                }  
+                System.out.println();  
+                  
+                bubbleSort(arr);//sorting array elements using bubble sort  
+                 
+                System.out.println("Array After Bubble Sort");  
+                for(int i=0; i < arr.length; i++){  
+                        System.out.print(arr[i] + " ");  
+                }  
+   
+        }  
+}  
