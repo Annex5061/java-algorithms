@@ -45,7 +45,23 @@ public class BinarySearch {
      * @param number
      * @return index of given number in array or -1 if not found
      */
-    public static int performBinarySearch(int[] input, int number) {
+//     public static int performBinarySearch(int[] input, int number) {
+//         int low = 0;
+//         int high = input.length - 1;
+
+//         while (high >= low) {
+//             int middle = (low + high) / 2;
+//             if (input[middle] == number) {
+//                 return middle;
+//             } else if (input[middle] < number) {
+//                 low = middle + 1;
+//             } else if (input[middle] > number) {
+//                 high = middle - 1;
+//             }
+//         }
+//         return -1;
+//     }
+                           public static int performBinarySearch(int[] input, int number) {
         int low = 0;
         int high = input.length - 1;
 
