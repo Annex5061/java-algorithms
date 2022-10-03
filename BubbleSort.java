@@ -1,60 +1,44 @@
-public class BubbleSortExample {  
-    //worst case of this code is O(n2).
-    static void bubbleSort(int[] arr) {  
-        int n = arr.length;  
-        int temp = 0;  
-         for(int i=0; i < n; i++){  
-                 for(int j=1; j < (n-i); j++){  
-                          if(arr[j-1] > arr[j]){  
-                                 //swap elements  
-                                 temp = arr[j-1];  
-                                 arr[j-1] = arr[j];  
-                                 arr[j] = temp;  
-                         }  
-                          
-                 }  
-         }  
-        
-  
-    } 
-    // An optimized version of Bubble Sort
-    //worst case of this code is O(n).
-    static void optimizedbubbleSort(int arr[], int n)
-    {
-        int i, j, temp;
-        boolean swapped;
-        for (i = 0; i < n - 1; i++)
-        {
-            swapped = false;
-            for (j = 0; j < n - i - 1; j++)
-            {
-                if (arr[j] > arr[j + 1])
-                {
-                    temp = arr[j];
-                    arr[j] = arr[j + 1];
-                    arr[j + 1] = temp;
-                    swapped = true;
+import java.util.Scanner;
+
+public class BubbleSort {
+    public static void main(String[] args) {
+        Scanner scan = new Scanner(System.in);
+        int[] a = new int[5];
+        System.out.println("Enter the elements of the array: ");
+        for (int i = 0; i<a.length; i++){
+            a[i] = scan.nextInt();
+        }
+        System.out.println("Array before sorting: ");
+        print(a);
+        long start = System.nanoTime();
+        bubble(a);
+        long end = System.nanoTime();
+        long execution = end - start;
+        System.out.println("Array after sorting: ");
+        print(a);
+        System.out.println("Execution time: " + execution + " nanoseconds");
+    }
+    static void print(int[] a){
+        for (int i : a) {
+            System.out.print(i + " ");
+        }
+        System.out.println();
+    }
+    public static void bubble(int[] a){
+        int x = a.length;
+        for(int i = 0; i<x-1; i++){
+            int flag = 0;
+            for (int j = 0; j<x-1; j++){
+                if (a[j]> a[j+1]){
+                    int temp = a[j+1];
+                    a[j+1] = a[j];
+                    a[j] = temp;
+                    flag++;
                 }
             }
-            if (swapped == false)
+            if (flag == 0){
                 break;
+            }
         }
     }
-    public static void main(String[] args) {  
-                int arr[] ={3,60,35,2,45,320,5};  
-                 
-                System.out.println("Array Before Bubble Sort");  
-                for(int i=0; i < arr.length; i++){  
-                        System.out.print(arr[i] + " ");  
-                }  
-                System.out.println();  
-                  
-                bubbleSort(arr);//sorting array elements using bubble sort  
-                 
-                System.out.println("Array After Bubble Sort");  
-                for(int i=0; i < arr.length; i++){  
-                        System.out.print(arr[i] + " ");  
-                }  
-   
-        }  
-}  
+}
