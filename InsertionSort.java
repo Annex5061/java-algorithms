@@ -1,38 +1,29 @@
+// Insertion sort in Java
+
 import java.util.Arrays;
 
-public class InsertionSort {
+class InsertionSort {
 
-    //Função para o Insertion Sort
-    public static void sort(int[] vetor) {
-        int aux, j;
-        //Laço de repetição para percorrer a lista
-        for (int i = 1; i < vetor.length; i++) {
-            //Auxiliar para melhor leitura
-            aux = vetor[i];
-            //Indice do vetor
-            j = i - 1;
+  void insertionSort(int array[]) {
+    int size = array.length;
 
-            //Enquanto as 2 opções forem Verdadeiras
-            while(j >= 0 && aux < vetor[j]) {
-                //O num q estava na posição j+1 vai ocupar a posição j
-                vetor[j+1] = vetor[j];
-                //Caso o aux precise andar mais de uma casa para esquerda
-                j--;
-            }
-            vetor[j+1] = aux;
-        }
+    for (int step = 1; step < size; step++) {
+      int key = array[step];
+      int j = step - 1;
+
+      while (j >= 0 && key < array[j]) {
+        array[j + 1] = array[j];
+        --j;
+      }
+      array[j + 1] = key;
     }
+  }
 
-
-    //Função Principal
-    public static void main(String[] args) {
-        //Criação lista 0  1  2  3  4
-        int[] vetor = { 3, 4, 1, 2, 5 };
-
-        //Função para ordenar a lista
-        sort(vetor);
-
-        //Imprimindo a lista Ordenada
-        System.out.println(Arrays.toString(vetor));
-    }
+    public static void main(String args[]) {
+    int[] data = { 9, 5, 1, 4, 3 };
+    InsertionSort is = new InsertionSort();
+    is.insertionSort(data);
+    System.out.println("Sorted Array in Ascending Order: ");
+    System.out.println(Arrays.toString(data));
+  }
 }
