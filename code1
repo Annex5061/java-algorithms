@@ -1,0 +1,36 @@
+// Code to understand the working of the copy constructor.
+#include <iostream>
+using namespace std;
+class person
+{
+private:
+    string name;
+    int age;
+
+public:
+    person(string person_name, int person_age)
+    {
+        cout << "Constructor for both name and age is called" << endl;
+        name = person_name;
+        age = person_age;
+    }
+    person(const person &obj)
+    {
+        cout << "Copy constructor is called" << endl;
+        name = obj.name;
+        age = obj.age;
+    }
+    void display()
+    {
+        cout << "Name of current object : " << name << endl;
+        cout << "Age of current object : " << age << endl;
+        cout << endl;
+    }
+};
+int main()
+{
+    person obj1("First person", 25);
+    obj1.display();
+    person obj2(obj1);
+    obj2.display();
+};
