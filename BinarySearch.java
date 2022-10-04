@@ -8,8 +8,7 @@ public class BinarySearch {
     public static void main(String[] args) {
 
         Scanner commandReader = new Scanner(System.in);
-        System.out.println("Welcome to Java Program to perform 
-                               binary search on int array");
+        System.out.println("Welcome to Java Program to perform binary search on int array");
         System.out.println("Enter total number of elements : ");
         int length = commandReader.nextInt();
         int[] input = new int[length];
@@ -19,8 +18,7 @@ public class BinarySearch {
             input[i] = commandReader.nextInt();
         }
 
-        System.out.println("Please enter number to be searched in array 
-                                    (sorted order)");
+        System.out.println("Please enter number to be searched in array (sorted order)");
         int key = commandReader.nextInt();
 
         int index = performBinarySearch(input, key);
@@ -66,7 +64,7 @@ public class BinarySearch {
         int high = input.length - 1;
 
         while (high >= low) {
-            int middle = (low + high) / 2;
+            int middle = low + (high - low) / 2;
             if (input[middle] == number) {
                 return middle;
             } else if (input[middle] < number) {
