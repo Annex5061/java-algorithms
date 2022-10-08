@@ -11,13 +11,9 @@ class Armstrong_Funtion
             n = (n-r)/10;
         }
         if(ano==a)
-        {
             flag = 1;
-        }
         else
-        {
             flag = 0;
-        }
         return(flag);
     }
     public static void main(String args[]) throws IOException
@@ -34,13 +30,9 @@ class Armstrong_Funtion
         Armstrong_Funtion ob = new Armstrong_Funtion();
         p = ob.Number(d);
         if(p==1)
-        {
             System.out.println("Number is Armstrong");
-        }
         else
-        {
             System.out.println("Number is Not Armstrong");
-        }
     }
 }    
         

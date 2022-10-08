@@ -1,50 +1,35 @@
-import java.io.*;
- 
-class GFG
-{
-    // An optimized version of Bubble Sort
-    static void bubbleSort(int arr[], int n)
-    {
-        int i, j, temp;
-        boolean swapped;
-        for (i = 0; i < n - 1; i++)
-        {
-            swapped = false;
-            for (j = 0; j < n - i - 1; j++)
-            {
-                if (arr[j] > arr[j + 1])
-                {
-                    // swap arr[j] and arr[j+1]
-                    temp = arr[j];
-                    arr[j] = arr[j + 1];
-                    arr[j + 1] = temp;
-                    swapped = true;
-                }
-            }
- 
-            // IF no two elements were
-            // swapped by inner loop, then break
-            if (swapped == false)
-                break;
-        }
-    }
- 
-    // Function to print an array
-    static void printArray(int arr[], int size)
-    {
-        int i;
-        for (i = 0; i < size; i++)
-            System.out.print(arr[i] + " ");
-        System.out.println();
-    }
- 
-    // Driver program
-    public static void main(String args[])
-    {
-        int arr[] = { 64, 34, 25, 12, 22, 11, 90 };
-        int n = arr.length;
-        bubbleSort(arr, n);
-        System.out.println("Sorted array: ");
-        printArray(arr, n);
-    }
-}
+public class BubbleSortExample {  
+    static void bubbleSort(int[] arr) {  
+        int n = arr.length;  
+        int temp = 0;  
+         for(int i=0; i < n; i++){  
+                 for(int j=1; j < (n-i); j++){  
+                          if(arr[j-1] > arr[j]){  
+                                 //swap elements  
+                                 temp = arr[j-1];  
+                                 arr[j-1] = arr[j];  
+                                 arr[j] = temp;  
+                         }  
+                          
+                 }  
+         }  
+  
+    }  
+    public static void main(String[] args) {  
+                int arr[] ={3,60,35,2,45,320,5};  
+                 
+                System.out.println("Array Before Bubble Sort");  
+                for(int i=0; i < arr.length; i++){  
+                        System.out.print(arr[i] + " ");  
+                }  
+                System.out.println();  
+                  
+                bubbleSort(arr);//sorting array elements using bubble sort  
+                 
+                System.out.println("Array After Bubble Sort");  
+                for(int i=0; i < arr.length; i++){  
+                        System.out.print(arr[i] + " ");  
+                }  
+   
+        }  
+}  
