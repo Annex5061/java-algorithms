@@ -1,134 +1,52 @@
-// Java implementation of Dijkstra's Algorithm 
-// using Priority Queue 
-import java.util.*; 
-public class DPQ { 
-	private int dist[]; 
-	private Set<Integer> settled; 
-	private PriorityQueue<Node> pq; 
-	private int V; // Number of vertices 
-	List<List<Node> > adj; 
+public class Dijkstra {
 
-	public DPQ(int V) 
-	{ 
-		this.V = V; 
-		dist = new int[V]; 
-		settled = new HashSet<Integer>(); 
-		pq = new PriorityQueue<Node>(V, new Node()); 
-	} 
+  public static void dijkstra(int[][] graph, int source) {
+    int count = graph.length;
+    boolean[] visitedVertex = new boolean[count];
+    int[] distance = new int[count];
+    for (int i = 0; i < count; i++) {
+      visitedVertex[i] = false;
+      distance[i] = Integer.MAX_VALUE;
+    }
 
-	// Function for Dijkstra's Algorithm 
-	public void dijkstra(List<List<Node> > adj, int src) 
-	{ 
-		this.adj = adj; 
+    // Distance of self loop is zero
+    distance[source] = 0;
+    for (int i = 0; i < count; i++) {
 
-		for (int i = 0; i < V; i++) 
-			dist[i] = Integer.MAX_VALUE; 
+      // Update the distance between neighbouring vertex and source vertex
+      int u = findMinDistance(distance, visitedVertex);
+      visitedVertex[u] = true;
 
-		// Add source node to the priority queue 
-		pq.add(new Node(src, 0)); 
+      // Update all the neighbouring vertex distances
+      for (int v = 0; v < count; v++) {
+        if (!visitedVertex[v] && graph[u][v] != 0 && (distance[u] + graph[u][v] < distance[v])) {
+          distance[v] = distance[u] + graph[u][v];
+        }
+      }
+    }
+    for (int i = 0; i < distance.length; i++) {
+      System.out.println(String.format("Distance from %s to %s is %s", source, i, distance[i]));
+    }
 
-		// Distance to the source is 0 
-		dist[src] = 0; 
-		while (settled.size() != V) { 
+  }
 
-			// remove the minimum distance node 
-			// from the priority queue 
-			int u = pq.remove().node; 
+  // Finding the minimum distance
+  private static int findMinDistance(int[] distance, boolean[] visitedVertex) {
+    int minDistance = Integer.MAX_VALUE;
+    int minDistanceVertex = -1;
+    for (int i = 0; i < distance.length; i++) {
+      if (!visitedVertex[i] && distance[i] < minDistance) {
+        minDistance = distance[i];
+        minDistanceVertex = i;
+      }
+    }
+    return minDistanceVertex;
+  }
 
-			// adding the node whose distance is 
-			// finalized 
-			settled.add(u); 
-
-			e_Neighbours(u); 
-		} 
-	} 
-
-	// Function to process all the neighbours 
-	// of the passed node 
-	private void e_Neighbours(int u) 
-	{ 
-		int edgeDistance = -1; 
-		int newDistance = -1; 
-
-		// All the neighbors of v 
-		for (int i = 0; i < adj.get(u).size(); i++) { 
-			Node v = adj.get(u).get(i); 
-
-			// If current node hasn't already been processed 
-			if (!settled.contains(v.node)) { 
-				edgeDistance = v.cost; 
-				newDistance = dist[u] + edgeDistance; 
-
-				// If new distance is cheaper in cost 
-				if (newDistance < dist[v.node]) 
-					dist[v.node] = newDistance; 
-
-				// Add the current node to the queue 
-				pq.add(new Node(v.node, dist[v.node])); 
-			} 
-		} 
-	} 
-
-	// Driver code 
-	public static void main(String arg[]) 
-	{ 
-		int V = 5; 
-		int source = 0; 
-
-		// Adjacency list representation of the 
-		// connected edges 
-		List<List<Node> > adj = new ArrayList<List<Node> >(); 
-
-		// Initialize list for every node 
-		for (int i = 0; i < V; i++) { 
-			List<Node> item = new ArrayList<Node>(); 
-			adj.add(item); 
-		} 
-
-		// Inputs for the DPQ graph 
-		adj.get(0).add(new Node(1, 9)); 
-		adj.get(0).add(new Node(2, 6)); 
-		adj.get(0).add(new Node(3, 5)); 
-		adj.get(0).add(new Node(4, 3)); 
-
-		adj.get(2).add(new Node(1, 2)); 
-		adj.get(2).add(new Node(3, 4)); 
-
-		// Calculate the single source shortest path 
-		DPQ dpq = new DPQ(V); 
-		dpq.dijkstra(adj, source); 
-
-		// Print the shortest path to all the nodes 
-		// from the source node 
-		System.out.println("The shorted path from node :"); 
-		for (int i = 0; i < dpq.dist.length; i++) 
-			System.out.println(source + " to " + i + " is "
-							+ dpq.dist[i]); 
-	} 
-} 
-
-// Class to represent a node in the graph 
-class Node implements Comparator<Node> { 
-	public int node; 
-	public int cost; 
-
-	public Node() 
-	{ 
-	} 
-
-	public Node(int node, int cost) 
-	{ 
-		this.node = node; 
-		this.cost = cost; 
-	} 
-
-	@Override
-	public int compare(Node node1, Node node2) 
-	{ 
-		if (node1.cost < node2.cost) 
-			return -1; 
-		if (node1.cost > node2.cost) 
-			return 1; 
-		return 0; 
-	} 
-} 
+  public static void main(String[] args) {
+    int graph[][] = new int[][] { { 0, 0, 1, 2, 0, 0, 0 }, { 0, 0, 2, 0, 0, 3, 0 }, { 1, 2, 0, 1, 3, 0, 0 },
+        { 2, 0, 1, 0, 0, 0, 1 }, { 0, 0, 3, 0, 0, 2, 0 }, { 0, 3, 0, 0, 2, 0, 1 }, { 0, 0, 0, 1, 0, 1, 0 } };
+    Dijkstra T = new Dijkstra();
+    T.dijkstra(graph, 0);
+  }
+}
