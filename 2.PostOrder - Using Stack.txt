@@ -1,0 +1,87 @@
+/**
+ * Definition for a binary tree node.
+ * struct TreeNode {
+ *     int val;
+ *     TreeNode *left;
+ *     TreeNode *right;
+ *     TreeNode() : val(0), left(nullptr), right(nullptr) {}
+ *     TreeNode(int x) : val(x), left(nullptr), right(nullptr) {}
+ *     TreeNode(int x, TreeNode *left, TreeNode *right) : val(x), left(left), right(right) {}
+ * };
+ */
+class Solution {
+    public:
+    void postorder(TreeNode* root,vector<int> &ans)
+    {
+        if(root==NULL)
+        {
+            return;
+        }
+        else
+        {
+            postorder(root->left,ans);
+            postorder(root->right,ans);
+            ans.push_back(root->val);
+        }
+    }
+public:
+    vector<int> postorderTraversal(TreeNode* root) {
+        vector<int> ans;
+        postorder(root,ans);
+        return ans;
+    }
+};
+
+
+
+
+class Solution {
+public:
+    vector<int> postorderTraversal(TreeNode* root) {
+        vector<int> ans;
+        if(root==NULL)
+        {
+            return ans;
+        }
+        else if(root->left==NULL&root->right==NULL)
+        {
+            ans.push_back(root->val);
+            return ans;
+        }
+        else
+        {
+            stack<TreeNode*> st;
+            TreeNode* curr = root;
+            TreeNode* temp;
+            while(curr!=NULL||!st.empty())
+            {
+                if(curr!=NULL)
+                {
+                    st.push(curr);
+                    curr=curr->left;
+                }
+                else
+                {
+                    temp = st.top()->right;
+                    if(temp==NULL)
+                    {
+                        temp = st.top();
+                        st.pop();
+                        ans.push_back(temp->val);
+                        while(!st.empty()&&temp==st.top()->right)
+                        {
+                            temp = st.top();
+                            st.pop();
+                            ans.push_back(temp->val);
+                        }
+                    }
+                    else
+                    {
+                        curr = temp;
+                    }
+                }
+            }
+            return ans;
+        }
+    }
+};

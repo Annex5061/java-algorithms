@@ -1,0 +1,36 @@
+			/* Abstact Method in Java */
+
+abstact class A //Superclass
+{
+ public abstract void Car();
+}
+
+class B extends A
+{
+  @Override
+  public void Car()
+ 	{
+ 	 System.out.println("Anuj has Audi");
+	}
+} 
+
+class C extends A
+{
+  @Override
+  public void Car()
+ 	{
+ 	 System.out.println("Spandan has BMW");
+	}
+} 
+
+class abstact_method
+{
+ public static void main(String[] a){
+    A B_obj=new B(); // Reference of object class
+    B B_obj=new B(); // Instance of Class B
+    C C_obj=new C(); // Instance of Class C
+    B_obj.Car();
+    C_obj.Car();
+    }
+ 
+}
