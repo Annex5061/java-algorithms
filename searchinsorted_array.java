@@ -4,7 +4,7 @@ import java.lang.*;
 
 
 
-class GFG 
+class Main
 { 
 
 	static int search(int arr[], int n, int x)
