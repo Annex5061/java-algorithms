@@ -8,11 +8,11 @@ public class GFG {
 		ArrayList<String> mylist = new ArrayList<String>();
 
 		// Adding custom input elements to list object
-		mylist.add("code");
-		mylist.add("quiz");
-		mylist.add("geeksforgeeks");
-		mylist.add("quiz");
-		mylist.add("practice");
+		mylist.add("Apple");
+		mylist.add("Orange");
+		mylist.add("Mangos");
+		mylist.add("Banana");
+		mylist.add("Plum");
 		mylist.add("qa");
 
 		// list before shuffling
