@@ -1,0 +1,50 @@
+#include<iostream>
+using namespace std;
+
+int main(){
+
+    int n;
+
+    cin>>n;
+
+    int b[n];
+
+    int max=b[0];
+
+    for(int i=0;i<n;i++){
+        cin>>b[i];
+    }
+
+    for(int i=1;i<n;i++){
+        if(b[i]>max){
+            max=b[i];
+        }
+    }
+    cout<<max<<endl;
+}
+
+
+#include<iostream>
+using namespace std;
+
+int main(){
+
+    int n;
+
+    cin>>n;
+
+    int b[n];
+
+    int max=b[0];
+
+    for(int i=0;i<n;i++){
+        cin>>b[i];
+    }
+
+    for(int i=1;i<n;i++){
+        if(b[i]>max){
+            max=b[i];
+        }
+    }
+    cout<<max<<endl;
+}

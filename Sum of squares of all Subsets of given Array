@@ -1,0 +1,44 @@
+// Java implementation of the approach
+class GFG
+{
+	static final int mod = (int)(1e9 + 7);
+	
+	// Function to return (2^P % mod)
+	static long power(int p)
+	{
+		long res = 1;
+		for (int i = 1; i <= p; ++i)
+		{
+			res *= 2;
+			res %= mod;
+		}
+		return res % mod;
+	}
+	
+	// Function to return the sum of squares of subsets
+	static long subset_square_sum(int A[])
+	{
+		int n = A.length;
+	
+		long ans = 0;
+	
+		// Sqauaring the elements
+		// and adding it to ans
+		for (int i : A)
+		{
+			ans += (1 * i * i) % mod;
+			ans %= mod;
+		}
+		return (1 * ans * power(n - 1)) % mod;
+	}
+	
+	// Driver code
+	public static void main (String[] args)
+	{
+		int A[] = { 3, 7 };
+	
+		System.out.println(subset_square_sum(A));
+	}
+}
+
+// This code is contributed by AnkitRai01
