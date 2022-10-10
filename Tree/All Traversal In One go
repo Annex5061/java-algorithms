@@ -1,0 +1,201 @@
+package com.trees;
+
+import java.util.*;
+
+public class preoreder {
+    static class TreeNode {
+        int data;
+        TreeNode left;
+        TreeNode right;
+//        represationOfTree.Node right;
+
+        public TreeNode(int key) {
+            data = key;
+            left = null;
+            right = null;
+
+        }
+
+        static void preorderTriversal(TreeNode root) {
+            if (root == null) {
+                return;
+            }
+            System.out.println(root.data);
+            preorderTriversal(root.left);
+            preorderTriversal(root.right);
+
+        }
+
+        static void inorderTriversal(TreeNode root) {
+            if (root == null) {
+                return;
+            }
+            inorderTriversal(root.left);
+            System.out.println(root.data);
+            inorderTriversal(root.right);
+        }
+
+        static void postorder(TreeNode root) {
+            if (root == null) {
+                return;
+            }
+            postorder(root.left);
+            postorder(root.right);
+            System.out.println(root.data);
+        }
+    }
+
+    public List<List<Integer>> levelOrder(TreeNode root) {
+
+        Queue<TreeNode> queue = new LinkedList<TreeNode>();
+        List<List<Integer>> wrapList = new LinkedList<List<Integer>>();
+        // base case
+        if (root == null) {
+            return wrapList;
+        }
+        // add the value of root into the queue
+        queue.offer(root);
+        while (!queue.isEmpty()) {
+            int levelNum = queue.size();
+            List<Integer> sublist = new LinkedList<Integer>();
+            for (int i = 0; i < levelNum; i++) {
+                if (queue.peek().left != null) {
+                    queue.offer(queue.peek().left);
+                }
+                if (queue.peek().right != null) {
+                    queue.offer(queue.peek().right);
+                }
+                sublist.add(queue.poll().data);
+
+            }
+            wrapList.add(sublist);
+
+        }
+        return wrapList;
+    }
+
+    // itataviely
+    public List<Integer> preorderTraversal(TreeNode root) {
+        List<Integer> preorder = new ArrayList<>();
+        // base case
+        if (root == null) {
+            return preorder;
+        }
+        Stack<TreeNode> st = new Stack<TreeNode>();
+        st.push(root);
+        while (!st.isEmpty()) {
+            root = st.pop();
+
+            preorder.add(root.data);
+            if (root.right != null) {
+                st.push(root.right);
+            }
+            if (root.left != null) {
+                st.push(root.left);
+            }
+        }
+        return preorder;
+
+
+    }
+
+    public List<Integer> inorderTraversal(TreeNode root) {
+        List<Integer> ans = new ArrayList<>();
+        Stack<TreeNode> st = new Stack<TreeNode>();
+        if (root == null) {
+            return ans;
+        }
+        TreeNode node = root;
+        while (true) {
+            if (node != null) {
+                st.push(node);
+                node = node.left;
+            } else {
+                if (st.isEmpty()) {
+                    break;
+                }
+                node = st.pop();
+                ans.add(node.data);
+                node = node.right;
+
+            }
+        }
+        return ans;
+    }
+
+    // post order itrattevealy
+    public List<Integer> postorderTraversal(TreeNode cur) {
+        List<Integer> postorder = new ArrayList<>();
+        if (cur == null){
+            return postorder;
+        }
+        Stack<TreeNode> st = new Stack<>();
+        while (cur != null || !st.isEmpty()){
+            if (cur != null){
+                st.push(cur);
+                cur = cur.left;
+
+            }
+            else {
+                TreeNode temp = st.peek().right;
+                if (temp == null){
+                    temp = st.peek();
+                    st.pop();
+                    postorder.add(temp.data);
+
+                }
+                else cur = temp;
+            }
+        }
+        return postorder;
+
+    }
+    // all trevelsal in one go
+    class Pair{
+        TreeNode node;
+        int num ;
+        Pair(TreeNode node,int num){
+            this.node = node;
+            this.num = num;
+        }
+    }
+    public  void  allTraversal(TreeNode root){
+        Stack<Pair> st = new Stack<Pair>();
+        st.push(new Pair(root,1));
+        List<Integer> pre = new ArrayList<>();
+        List<Integer> in = new ArrayList<>();
+        List<Integer> post = new ArrayList<>();
+        // base case is
+        if (root == null) return;
+        while (!st.isEmpty()){
+            Pair it = st.pop();
+
+            if (it.num == 1){
+                pre.add(it.node.data);
+                it.num++;
+                st.push(it);
+                if (it.node.left != null){
+                    st.push( new Pair(it.node.left,1));
+                }
+
+            }
+            else if (it.num == 2 ){
+                in.add(it.node.data);
+                it.num++;
+                st.push(it);
+                if (it.node.right != null){
+                    st.push(new Pair(it.node.right,1));
+
+                }
+            }
+            else
+            {
+                post.add(it.node.data);
+            }
+        }
+
+
+    }
+
+}
+
