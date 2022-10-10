@@ -1,58 +1,89 @@
-public class Quick  
-{  
-    /* function that consider last element as pivot,  
-place the pivot at its exact position, and place  
-smaller elements to left of pivot and greater  
-elements to right of pivot.  */  
-int partition (int a[], int start, int end)  
-{  
-    int pivot = a[end]; // pivot element  
-    int i = (start - 1);  
-  
-    for (int j = start; j <= end - 1; j++)  
-    {  
-        // If current element is smaller than the pivot  
-        if (a[j] < pivot)  
-        {  
-            i++; // increment index of smaller element  
-            int t = a[i];  
-            a[i] = a[j];  
-            a[j] = t;  
-        }  
-    }  
-    int t = a[i+1];  
-    a[i+1] = a[end];  
-    a[end] = t;  
-    return (i + 1);  
-}  
-  
-/* function to implement quick sort */  
-void quick(int a[], int start, int end) /* a[] = array to be sorted, start = Starting index, end = Ending index */  
-{  
-    if (start < end)  
-    {  
-        int p = partition(a, start, end);  //p is partitioning index  
-        quick(a, start, p - 1);  
-        quick(a, p + 1, end);  
-    }  
-}  
-  
-/* function to print an array */  
-void printArr(int a[], int n)  
-{  
-    int i;  
-    for (i = 0; i < n; i++)  
-        System.out.print(a[i] + " ");  
-}  
-    public static void main(String[] args) {  
-    int a[] = { 13, 18, 27, 2, 19, 25 };  
-    int n = a.length;  
-    System.out.println("\nBefore sorting array elements are - ");  
-    Quick q1 = new Quick();  
-    q1.printArr(a, n);  
-    q1.quick(a, 0, n - 1);  
-    System.out.println("\nAfter sorting array elements are - ");  
-    q1.printArr(a, n);  
-    System.out.println();  
-    }  
-}  
+import java.util.*;
+public class quick_sort {
+  static pt=0;
+
+    int partition( int a[], int lb, int ub)
+
+    {
+        int pivot=a[lb];
+        int start=lb;
+        int end=ub;
+
+        while(start<end)
+        {
+          while(a[start]<=pivot)
+          {
+            start++;
+          }
+        while(a[end]>pivot)
+        {
+            end--;
+        }
+        if(start<end)
+        {
+            
+            int temp=a[start];
+            a[start]=a[end];
+            a[end]=temp;
+        }
+        
+       
+    }
+
+
+      int temp=a[lb];
+      a[lb]=a[end];
+      a[end]=temp;
+
+        return end;
+
+
+
+    }
+   
+ 
+
+    void sort(int a[],int lb,int ub)
+    {
+      if(lb<ub)
+      {
+       int  loc=partition(a, lb, ub);
+     sort(a, lb, loc-1);
+     sort(a, loc+1, ub);
+         
+
+      }
+
+
+    }
+    public static void main(String[] args) {
+        
+       // int a[]={34,56,12,34,67};
+       Scanner sc=new Scanner(System.in);
+       Random rd=new Random();
+       System.out.println("enter numbers:");
+       int n=sc.nextInt();
+       int a[]=new int[n];
+       for(int i=0;i<n;i++)
+       {
+           a[i]=i;
+       }
+       
+        int n=a.length;
+
+        quick_sort qs=new quick_sort();
+        long s=System.nanoTime();
+        qs.sort(a, 0, n-1);
+        long e=System.nanoTime();
+        long time=(e-s);
+
+
+        System.out.println("after sorting:"+"required time is "+time);
+    //     for (int i=0; i<n; i++){
+    //     System.out.print(a[i] +"");
+    // System.out.println();
+    //     }
+
+    }
+    
+}
