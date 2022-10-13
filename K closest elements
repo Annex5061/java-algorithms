@@ -1,0 +1,25 @@
+class Solution {
+    public List<Integer> findClosestElements(int[] arr, int k, int x) {
+        Map<Integer, List<Integer>> map = new TreeMap<>();
+        List<Integer> result = new ArrayList<>();
+        
+        for(int i=0; i<arr.length; i++){
+            Integer diff = Math.abs(x-arr[i]);
+            List<Integer> vals = map.getOrDefault(diff,new ArrayList<>());
+            vals.add(arr[i]);
+            map.put(diff,vals);
+        }
+        
+     
+        for(Map.Entry<Integer,List<Integer>> entry : map.entrySet()){
+                for(Integer num : entry.getValue()){
+                    if(k>0){
+                        result.add(num);
+                        k--;
+                    }
+                }
+        }
+        Collections.sort(result);
+        return result;
+    }
+}
