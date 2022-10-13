@@ -1,65 +1,34 @@
-import java.util.Scanner;
 
-/*
- * Java Program to implement binary search without using recursion
- */
 public class BinarySearch {
 
     public static void main(String[] args) {
-
-        Scanner commandReader = new Scanner(System.in);
-        System.out.println("Welcome to Java Program to perform 
-                               binary search on int array");
-        System.out.println("Enter total number of elements : ");
-        int length = commandReader.nextInt();
-        int[] input = new int[length];
-
-        System.out.printf("Enter %d integers %n", length);
-        for (int i = 0; i < length; i++) {
-            input[i] = commandReader.nextInt();
-        }
-
-        System.out.println("Please enter number to be searched in array 
-                                    (sorted order)");
-        int key = commandReader.nextInt();
-
-        int index = performBinarySearch(input, key);
-
-        if (index == -1) {
-            System.out.printf("Sorry, %d is not found in array %n", key);
-        } else {
-            System.out.printf("%d is found in array at index %d %n", key,
-                                                         index);
-        }
-
-        commandReader.close();
-
+        int[] arr = { -18, -12, -4, 0, 2, 3, 4, 15, 16, 18, 22, 45, 89 };
+        int target = 22;
+        int ans = binarySearch(arr, target);
+        System.out.println(ans);
     }
 
-    /**
-     * Java method to perform binary search. It accept an integer array and a
-     * number and return the index of number in the array. If number doesn't
-     * exists in array then it return -1
-     *
-     * @param input
-     * @param number
-     * @return index of given number in array or -1 if not found
-     */
-    public static int performBinarySearch(int[] input, int number) {
-        int low = 0;
-        int high = input.length - 1;
+    // return the index
+    // return -1 if it does not exist
+    static int binarySearch(int[] arr, int target) {
+        int start = 0;
+        int end = arr.length - 1;
 
-        while (high >= low) {
-            int middle = (low + high) / 2;
-            if (input[middle] == number) {
-                return middle;
-            } else if (input[middle] < number) {
-                low = middle + 1;
-            } else if (input[middle] > number) {
-                high = middle - 1;
+        while (start <= end) {
+            // find the middle element
+            // int mid = (start + end) / 2; // might be possible that (start + end) exceeds
+            // the range of int in java
+            int mid = start + (end - start) / 2;
+
+            if (target < arr[mid]) {
+                end = mid - 1;
+            } else if (target > arr[mid]) {
+                start = mid + 1;
+            } else {
+                // ans found
+                return mid;
             }
         }
         return -1;
     }
-
 }

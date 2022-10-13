@@ -1,0 +1,19 @@
+[
+	{
+		"correct_answers":
+		[
+			"enter number of students\nEnter Name : \nEnter Roll No. : \nEnter SGPA : \nEnter Name : \nEnter Roll No. : \nEnter SGPA : \n 1 for linear search\n 2 for binary search\n 3 to display details of all students\n 4 to exit\nenter your choice = \nEnter SGPA of the student : \nObject is present at 0 index.\nvansh\n5\n8\n 1 for linear search\n 2 for binary search\n 3 to display details of all students\n 4 to exit\nenter your choice ="
+		],
+		"test": "2\nvansh\n5\n8\nvatsal\n6\n8.5\n1\n8\n4\n"
+	},
+	{
+		"correct_answers":
+		[
+			"enter number of students\nEnter Name : \nEnter Roll No. : \nEnter SGPA : \nEnter Name : \nEnter Roll No. : \nEnter SGPA : \n 1 for linear search\n 2 for binary search\n 3 to display details of all students\n 4 to exit\nenter your choice = \nEnter SGPA of the student : \nObject is present at 0 index.\nVans\n1\n8\nObject is present at 1 index.\nVansh\n2\n8\n 1 for linear search\n 2 for binary search\n 3 to display details of all students\n 4 to exit\nenter your choice = \nEnter SGPA of the student : \nObject is present at 0 index.\nVans\n1\n8\nObject is present at 1 index.\nVansh\n2\n8\n 1 for linear search\n 2 for binary search\n 3 to display details of all students\n 4 to exit\nenter your choice ="
+		],
+		"test": "2\nVans\n1\n8\nVansh\n2\n8\n1\n8\n1\n8\n4\n"
+	},
+	{
+		"test": "2\n"
+	}
+]
