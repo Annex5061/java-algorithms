@@ -1,26 +1,31 @@
 import java.util.Scanner;
-public class TowersofHanoi {
-    public static final String SOURCE_PEG = "Source";
-    public static final String TARGET_PEG = "Target";
-    public static final String SPARE_PEG = "Spare";
- 
-    public static void main(String[] args) {
-        Scanner scanner = new Scanner(System.in);
-        System.out.println("Please enter number of discs:");
-        int numberOfDiscs = scanner.nextInt();
-        solveTowersOfHanoi(numberOfDiscs, SOURCE_PEG, TARGET_PEG, SPARE_PEG);
-        scanner.close();
+
+public class Main {
+  //Recursive Function
+  public static void towerOfHanoi(int disks, char source, char auxiliary, char destination) {
+    // Write your code here
+    if (disks == 0) { //Base Case 1
+      return;
     }
- 
-    
-    private static void solveTowersOfHanoi(int numberOfDiscs, String sourcePeg, String targetPeg, String sparePeg) {
-        if (numberOfDiscs == 1) {
-            System.out.println(sourcePeg + " => " + targetPeg);
-        } else {
-            solveTowersOfHanoi(numberOfDiscs - 1, sourcePeg, sparePeg, targetPeg);
-            System.out.println(sourcePeg + " => " + targetPeg);
-            solveTowersOfHanoi(numberOfDiscs - 1, sparePeg, targetPeg, sourcePeg);
-        }
- 
+    if (disks == 1) { //Base Case 2
+      System.out.println(source + " " + destination);
+      return;
+    } else {
+      //Shifting d-1 disk from A to C
+      towerOfHanoi(disks - 1, source, destination, auxiliary);
+      System.out.println(source + " " + destination);
+      //Shifting d-1 disk from c to B
+      towerOfHanoi(disks - 1, auxiliary, source, destination);
     }
+  }
+
+  public static void main(String[] args) {
+    int disk;
+    Scanner s = new Scanner(System.in);
+
+    System.out.print("Print No of Disks: ");
+    disk = s.nextInt();
+
+    towerOfHanoi(disk, 'A', 'C', 'B');
+  }
 }
